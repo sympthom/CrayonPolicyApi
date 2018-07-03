@@ -48,6 +48,28 @@ namespace Crayon.Api.Policy.Test
         }
 
         [TestMethod]
+        public async Task TestUpdatePolicy()
+        {
+            Assert.IsNotNull(_logger);
+            Assert.IsNotNull(_configuration);
+
+            var token = new CancellationToken();
+
+            var response = await new ResilientPolicyApi(_logger)
+                .UseRestSharpPolicyClient(_configuration, _logger)
+                .UsePollyHttpInvocationStrategy(_logger)
+                .Update(3, new Policy
+                {
+                    Id = 3,
+                    InsuranceNr = "fjupp",
+                    IsComplete = true
+                }, token);
+
+            Assert.IsNotNull(response);
+            Assert.AreEqual(response.StatusCode, "OK");
+        }
+
+        [TestMethod]
         public async Task TestGetAll()
         {
             Assert.IsNotNull(_logger);

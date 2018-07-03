@@ -13,6 +13,8 @@ namespace Crayon.Api.Policy
 
         Task<ResponseMessage> InsertAsync(Policy policy);
 
+        Task<ResponseMessage> UpdateAsync(int id, Policy policy);
+
         Task<ResponseMessage> DeleteAsync(int id);
     }
 }

@@ -36,6 +36,13 @@ namespace Crayon.Api.Policy
             return _strategy.Invoke(() => _client.InsertAsync(policy));
         }
 
+        public Task<ResponseMessage> Update(int id, Policy policy, CancellationToken token)
+        {
+            Validate();
+
+            return _strategy.Invoke(() => _client.UpdateAsync(id, policy));
+        }
+
         public Task<ResponseMessage> Delete(int id, CancellationToken token)
         {
             Validate();

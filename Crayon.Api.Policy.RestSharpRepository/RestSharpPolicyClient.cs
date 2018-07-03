@@ -50,6 +50,17 @@ namespace Crayon.Api.Policy.RestSharpRepository
             return new ResponseMessage(response.StatusCode.ToString());
         }
 
+        public async Task<ResponseMessage> UpdateAsync(int id, Policy policy)
+        {
+            var request = _factory.Create(Method.PUT, id.ToString());
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(policy);
+
+            var response = await _client.ExecuteTaskAsync(request);
+
+            return new ResponseMessage(response.StatusCode.ToString());
+        }
+
         public async Task<ResponseMessage> DeleteAsync(int id)
         {
             var request = _factory.Create(Method.DELETE, id.ToString());

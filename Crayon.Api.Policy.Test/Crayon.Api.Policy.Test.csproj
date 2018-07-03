@@ -75,6 +75,10 @@
       <Project>{4fa8995e-f57d-44b5-8f98-c66bf7a718e3}</Project>
       <Name>Crayon.Api.Policy</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Crayon.Api\Crayon.Api.csproj">
+      <Project>{39581b47-25bb-49df-a2a8-b58ea8b560ba}</Project>
+      <Name>Crayon.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
