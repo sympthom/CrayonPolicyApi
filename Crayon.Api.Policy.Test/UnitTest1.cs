@@ -82,7 +82,7 @@ namespace Crayon.Api.Policy.Test
         }
 
         [TestMethod]
-        public async Task GetById()
+        public async Task TestGetById()
         {
             Assert.IsNotNull(_logger);
             Assert.IsNotNull(_configuration);

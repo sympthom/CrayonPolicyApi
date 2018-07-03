@@ -14,9 +14,9 @@ namespace Crayon.Api.Policy.RestSharpRepository
 
         public RestSharpFactory(string service, IApiConfiguration configuration, ILogger logger)
         {
-            _service = service;
-            _configuration = configuration;
-            _logger = logger;
+            _service = service ?? throw new ArgumentNullException(nameof(service));
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public RestRequest Create(Method method, params string[] asd)

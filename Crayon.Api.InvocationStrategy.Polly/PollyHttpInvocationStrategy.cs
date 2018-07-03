@@ -22,11 +22,14 @@ namespace Crayon.Api.Policy.InvocationStrategy.Polly
 
         public PollyHttpInvocationStrategy(ILogger logger)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public Task<ResponseMessage> Invoke(Func<Task<ResponseMessage>> action)
         {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
             var policyWrapper = global::Polly.Policy
                 .Handle<HttpRequestException>()
                 .OrResult<ResponseMessage>(r => _httpStatusCodesWorthRetrying.Contains(r.StatusCode))
@@ -42,6 +45,9 @@ namespace Crayon.Api.Policy.InvocationStrategy.Polly
 
         public Task<ResponseMessage<T>> Invoke<T>(Func<Task<ResponseMessage<T>>> action)
         {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
             var policyWrapper = global::Polly.Policy
                 .Handle<HttpRequestException>()
                 .OrResult<ResponseMessage<T>>(r => _httpStatusCodesWorthRetrying.Contains(r.StatusCode))

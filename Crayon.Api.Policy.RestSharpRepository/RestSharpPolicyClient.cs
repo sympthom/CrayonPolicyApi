@@ -14,9 +14,9 @@ namespace Crayon.Api.Policy.RestSharpRepository
 
         public RestSharpPolicyClient(IApiConfiguration configuration, ILogger logger)
         {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _client = new RestClient(configuration.BaseUri);
             _factory = new RestSharpFactory("PolicyService", configuration, logger);
-            _logger = logger;
         }
 
         public async Task<ResponseMessage<Policy>> GetByIdAsync(int id)
